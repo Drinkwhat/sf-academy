@@ -5,7 +5,7 @@ import Debug from "debug"
 const debug = Debug("splitter")
 Debug.enable("*")
 
-const splitter = async function(rawData: string): Promise<Rows> {
+const splitter = async(rawData: string): Promise<Rows> => {
   const rows: Rows = {}
   const data = rawData.slice(0, -1).split("\n")
   for (let i = 0; i < data.length; i++) {

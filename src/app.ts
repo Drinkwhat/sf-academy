@@ -15,16 +15,17 @@ dotenv.config()
 const PORT = process.env.PORT
 const app = express()
 
-app.use(fileUpload(), urlencoded({ extended: false }))
+app.use(fileUpload(), urlencoded({ extended: false }), express.static(path.join(__dirname, "../frontend")))
+
 void processData()
 
 app.get("/", (req: Request, res: Response) => {
-  res.status(200).sendFile(path.join(__dirname, "../frontend/index.html"))
+  res.status(200).sendFile("./index.html")
 })
 
 app.get("/fakerGenerator", (req: Request, res: Response) => {
   fakerGenerator()
-  res.download(path.join(__dirname, "../faker.txt"), function(err) {
+  res.download(path.join(__dirname, "../faker.txt"), (err) => {
     if (err) {
       debug("%O", err)
     }
@@ -66,5 +67,5 @@ app.all("*", (req: Request, res: Response) => {
 })
 
 app.listen(PORT, () => {
-  debug("%O", `⚡️[server]: Server is running at localhost: ${PORT}`)
+  debug(`⚡️[server]: Server is running at localhost: ${PORT}`)
 })

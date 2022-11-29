@@ -6,11 +6,11 @@ import { insertIntoProcessedData, insertIntoPendingData, partialSelectFromPendin
 const debug = Debug("operations")
 Debug.enable("*")
 
-function delay(ms: number): Promise<void> {
+const delay = (ms: number): Promise<void> => {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-const dataFilter = async function(ctx: string): Promise<void> {
+const dataFilter = async(ctx: string): Promise<void> => {
   const rawData = await splitter(ctx)
   for (let i = rawData[1].firstNumber; i <= rawData[1].secondNumber; i++) {
     const timestamp = new Date()
@@ -18,7 +18,7 @@ const dataFilter = async function(ctx: string): Promise<void> {
   }
 }
 
-const processData = async function(): Promise<void> {
+const processData = async(): Promise<void> => {
   const condition = true
   while (condition) {
     const data = await partialSelectFromPendingData()

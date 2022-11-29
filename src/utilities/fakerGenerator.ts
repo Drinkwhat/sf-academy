@@ -9,15 +9,15 @@ Debug.enable("*")
 
 const lorem = new LoremIpsum()
 
-function getRandomNumber(max: number, min = 0): number {
+const getRandomNumber = (max: number, min = 0): number => {
   return Math.trunc(Math.random() * (max - min)) + min
 }
 
-function getDummyData(): string {
+const getDummyData = (): string => {
   return lorem.generateWords(getRandomNumber(10, 1)).split(" ").join("_")
 }
 
-const fakerGenerator = function(): void {
+const fakerGenerator = (): void => {
   const maxElements = getRandomNumber(50, 1)
   const firstNumber = getRandomNumber(maxElements, 1)
   const secondNumber = getRandomNumber(maxElements + 1, firstNumber + 1)
